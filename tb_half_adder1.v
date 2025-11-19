@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 19.11.2025 18:44:44
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: tb_half_adder1
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module tb_half_adder1(
+
+    );
+    reg a,b;
+     wire sum,carry;
+     
+     half_adder uut(a,b,sum,carry);
+     
+     initial begin
+      
+      a=0; b=0; #10;
+      a=0; b=1; #10;
+      a=1; b=0; #10;
+      a=1; b=1; #10;
+      
+      $finish;
+      end
 endmodule

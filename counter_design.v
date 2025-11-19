@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 19.11.2025 22:43:27
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: counter_design
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,19 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module counter_design(
+    input clk,
+    input reset,
+    input up_down,            
+    output reg [3:0] count
+
+    );
+     always @(posedge clk or posedge reset) begin
+    if (reset)
+        count <= 0;
+    else if (up_down)
+        count <= count + 1;
+    else
+        count <= count - 1;
+end
 endmodule

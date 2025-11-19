@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 12.11.2025 14:35:22
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: half_subtractor
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module half_subtractor(
+    input a,
+    input b,
+    output difference,
+    output borrow
+    
+    
+
+    );
+    assign difference = (a & (~b));
+    assign borrow = (b&(~a));
 endmodule

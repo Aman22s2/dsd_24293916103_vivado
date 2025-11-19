@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 19.11.2025 22:46:16
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: tb_counter_design
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,26 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module tb_counter_design(
+
+    );
+    reg clk, reset;
+wire [3:0] count;
+
+
+up_counter_design uut (clk, reset, count);
+
+always #5 clk = ~clk; 
+
+initial begin
+    clk = 0;
+    reset = 1;
+    #15 reset = 0;
+
+    #200 $finish;
+end
+
+initial begin
+    $monitor("Time=%0t | Count=%b", $time, count);
+end
 endmodule

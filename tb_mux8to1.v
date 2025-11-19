@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 19.11.2025 17:21:50
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: tb_mux8to1
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module tb_mux8to1(
+
+    );
+    
+    reg [7:0] D;
+    reg [2:0] S;
+    wire Y;
+    
+    mux8to1 uut (
+       D, S, Y
+    );
+    initial begin
+        
+        D = 8'b10101010; 
+
+    $display("S  | Y");
+    $monitor("%b | %b", S, Y);
+
+    for (S = 0; S < 8; S = S + 1)
+        #10;
+
+    $finish;
+end
 endmodule

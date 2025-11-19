@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 12.11.2025 15:06:39
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: tb_full_adder
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,22 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module tb_full_adder(
+
+    );
+    reg a, b;
+    wire sum, cout;
+    
+    full_adder uut(
+    .a(a), .b(b), .sum(sum), .cout(cout)
+    );
+    
+    initial begin
+    a=0; b=0; #10;
+    a=1; b=0; #10;
+    a=0; b=1; #10;
+    a=1; b=1; #10;
+    
+   $finish;
+   end
 endmodule

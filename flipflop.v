@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 12.11.2025 15:29:39
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: flipflop
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module flipflop(
+    input s,r,clk,
+    output q, qbar
+    );
+    wire sg,rg;
+    assign #1 sg=(~(s&(clk)));
+    assign #1 rg=(~(r&(clk)));
+    assign #1 q=(~(sg&qbar));
+    assign #1 qbar=(~(rg&q));
 endmodule

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 19.11.2025 17:20:10
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: mux8to1
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module mux8to1(
+    input [7:0] D,
+    input [2:0] S,
+    output Y
+
+    );
+     assign Y = (S == 3'b000) ? D[0] :
+           (S == 3'b001) ? D[1] :
+           (S == 3'b010) ? D[2] :
+           (S == 3'b011) ? D[3] :
+           (S == 3'b100) ? D[4] :
+           (S == 3'b101) ? D[5] :
+           (S == 3'b110) ? D[6] :
+                           D[7];
 endmodule

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 19.11.2025 17:13:35
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: jk_flip_flop
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module jk_flip_flop(
+    input j, k, clk,
+    output q, q_bar
+
+    );
+    
+    wire j_g, k_g;
+    
+    assign #1 j_g=(~(j&(clk)));
+    assign #1 k_g=(~(k&(clk)));
+    assign #1 q =(~((j_g)&(q_bar)));
+    assign #1 q_bar=(~((k_g)&q));
 endmodule

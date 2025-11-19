@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.11.2025 22:04:51
+// Create Date: 19.11.2025 17:10:54
 // Design Name: 
-// Module Name: boolean_exp
+// Module Name: tb_d_flip_flop
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module boolean_exp(
-   input a,b,c,
-    output f1,f2,f3
-);
-    assign f1=(a&b)|(~a&c);
-    assign f2=(~a&~b)|(b&c);
-    assign f3=(a^b)&c;
+module tb_d_flip_flop(
+
+    );
+    
+     reg d, clk;
+    wire dg, d_bar_g, q, q_bar;
+    
+    d_flip_flop uut(d, clk, q, q_bar);
+    
+    initial
+    begin
+    clk=0;
+    forever
+    #5 clk =~clk;
+    end
+    
+    initial
+    begin
+        d=0;
+    #10 d=1;
+    #10
+    $finish;
+   end
 endmodule
